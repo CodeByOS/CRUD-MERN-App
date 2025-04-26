@@ -4,6 +4,7 @@ const connectDB = require("./config/db");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const bandRoutes = require("./routes/bandRoutes");
+const foodRoutes = require("./routes/foodRoutes");
 
 const app = express();
 
@@ -15,9 +16,9 @@ app.use(bodyParser.json());
 
 //* Define Route
 app.use("/api/bands", bandRoutes);
+app.use("/api/food", foodRoutes);
 
 //* Start the Server
-
 connectDB()
     .then(() => {
         const PORT = process.env.PORT || 3001;
