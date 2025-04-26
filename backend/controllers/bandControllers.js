@@ -36,9 +36,23 @@ const addBand = async (req, res) => {
     }
 }
 
+//* UPDATE BAND BY ID
+const updateBandByID = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const band = await Band.findByIdAndUpdate(id, req.body);
+        if(!band) res.status(404).json({ message: "Failed to Update the Band..!" });
+
+        res.status(200).json({ message: "The Band Updated Successfuly.." });
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+}
+
 
 module.exports = {
     getBands,
     getBandByID,
-    addBand
+    addBand,
+    updateBandByID
 };
