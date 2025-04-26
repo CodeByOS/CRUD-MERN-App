@@ -49,10 +49,23 @@ const updateBandByID = async (req, res) => {
     }
 }
 
+//* DELETE A BAND BY ID
+const deleteBandByID = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const band = await Band.findByIdAndDelete(id);
+        if(!band) res.status(404).json({ message: "Failed to Deleted This Band..!" });
+
+        res.status(200).json({ message: "Deleted Band Successfuly.." });
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+}
 
 module.exports = {
     getBands,
     getBandByID,
     addBand,
-    updateBandByID
+    updateBandByID,
+    deleteBandByID
 };
