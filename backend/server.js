@@ -2,15 +2,19 @@ require("dotenv").config();
 const express = require("express");
 const connectDB = require("./config/db");
 const bodyParser = require("body-parser");
+const cors = require("cors");
+const bandRoutes = require("./routes/bandRoutes");
 
 const app = express();
 
 
-//* MiddleWare
+//* MiddleWares
+app.use(cors());
 app.use(bodyParser.json());
 
 
 //* Define Route
+app.use("/api/bands", bandRoutes);
 
 //* Start the Server
 
