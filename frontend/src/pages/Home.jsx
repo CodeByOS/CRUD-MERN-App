@@ -40,8 +40,7 @@ const Home = () => {
   if (loading)
     return (
       <div
-        className="p-6 text-center text-lg font-semibold animate-pulse"
-        aria-live="polite"
+        className="p-6 text-center text-2xl font-bold animate-pulse"
       >
         Loading...
       </div>
@@ -49,8 +48,7 @@ const Home = () => {
   if (error)
     return (
       <div
-        className="p-6 text-center text-red-600"
-        aria-live="assertive"
+        className="p-6 text-center text-2xl font-bold text-red-600"
       >
         {error}
       </div>
@@ -65,7 +63,8 @@ const Home = () => {
               🎵 Music Bands
             </h1>
             <Link
-              to={`/bands/add`}
+              to={"/bands/add"}
+              aria-label="Add New Band"
               className="text-lg font-semibold text-white bg-green-700 hover:bg-green-800 px-4 py-2 rounded transition"
             >
               + Add New Band
@@ -100,9 +99,18 @@ const Home = () => {
 
       {/* Foods Section */}
       <section>
-        <h1 className="text-4xl font-extrabold mb-8 border-b-4 border-yellow-400 inline-block pb-2">
-          🍔 Delicious Foods
-        </h1>
+        <div className="flex items-center justify-between mb-8 border-b-4 border-yellow-700 pb-2">
+          <h1 className="text-4xl font-extrabold text-yellow-700">
+            🍔 Delicious Foods
+          </h1>
+          <Link
+            to={`/foods/add`}
+            aria-label="Add New Food"
+            className="text-lg font-semibold text-white bg-yellow-700 hover:bg-yellow-800 px-4 py-2 rounded transition focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2"
+          >
+            + Add New Food
+          </Link>
+        </div>
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {foods.map((food) => (
             <div
@@ -117,7 +125,7 @@ const Home = () => {
               </div>
               <Link
                 to={`/foods/${food._id}`}
-                className="mt-6 text-sm font-semibold text-yellow-500 group-hover:text-yellow-700 underline underline-offset-4"
+                className="mt-6 text-sm font-semibold text-yellow-500 group-hover:text-yellow-700 underline underline-offset-4 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2"
               >
                 Read More →
               </Link>

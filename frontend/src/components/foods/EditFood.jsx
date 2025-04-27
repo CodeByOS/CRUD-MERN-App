@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { getBand, updateBand } from "../../api/bandApi";
+import { getFood, updateFood } from "../../api/foodApi";
 import { useNavigate, useParams } from "react-router-dom";
 
-// Component to edit an existing band
-const EditBand = () => {
-    // Local state for the band details
-    const [band, setBand] = useState({
-        bandName: "",
+// Component to edit an existing food
+const EditFood = () => {
+    // Local state for the food details
+    const [food, setFood] = useState({
+        foodName: "",
         short_description: "",
         description: "",
         genre: "",
@@ -21,47 +21,47 @@ const EditBand = () => {
     const { loading, error, updating } = state;
 
     const navigate = useNavigate();
-    const { id } = useParams(); // Get band ID from URL params
+    const { id } = useParams(); // Get food ID from URL params
 
-    // Fetch the band data when the component mounts or ID changes
+    // Fetch the food data when the component mounts or ID changes
     useEffect(() => {
-        fetchBand();
+        fetchFood();
     }, [id]);
 
-    // Function to fetch a single band's data
-    const fetchBand = async () => {
+    // Function to fetch a single food's data
+    const fetchFood = async () => {
         setState(prev => ({ ...prev, loading: true, error: null }));
         try {
-            const { data } = await getBand(id);
-            setBand(data);
+            const { data } = await getFood(id);
+            setFood(data);
         } catch (err) {
-            setState(prev => ({ ...prev, error: "Failed to load band data.", err }));
+            setState(prev => ({ ...prev, error: "Failed to load food data.", err }));
         } finally {
             setState(prev => ({ ...prev, loading: false }));
         }
     };
 
-    // Handle input changes and update the 'band' state
+    // Handle input changes and update the 'food' state
     const handleChange = (e) => {
-        setBand({ ...band, [e.target.name]: e.target.value });
+        setFood({ ...food, [e.target.name]: e.target.value });
     };
 
-    // Handle form submission to update band info
+    // Handle form submission to update food info
     const handleSubmit = async (e) => {
         e.preventDefault();
         setState(prev => ({ ...prev, updating: true, error: null }));
         try {
-            await updateBand(id, band);
+            await updateFood(id, food);
             navigate("/"); // Redirect to home after successful update
         } catch (err) {
-            setState(prev => ({ ...prev, error: "Failed to update the band.", err }));
+            setState(prev => ({ ...prev, error: "Failed to update the food.", err }));
         } finally {
             setState(prev => ({ ...prev, updating: false }));
         }
     };
 
     // Show loading state
-    if (loading) return <div className="p-6 text-center text-2xl font-bold animate-pulse">Loading band info...</div>;
+    if (loading) return <div className="p-6 text-center text-2xl font-bold animate-pulse">Loading food info...</div>;
 
     // Show error message if there's an error
     if (error) return <div className="p-6 text-center text-2xl font-bold animate-pulse text-red-600">{error}</div>;
@@ -70,15 +70,15 @@ const EditBand = () => {
         <div className="flex items-center justify-center min-h-screen p-6">
             <div className="max-w-md w-full">
                 {/* Page Title */}
-                <h1 className="text-2xl font-bold mb-6 text-center">Edit Band</h1>
+                <h1 className="text-2xl font-bold mb-6 text-center">Edit Food</h1>
 
-                {/* Form to edit band */}
+                {/* Form to edit food */}
                 <form onSubmit={handleSubmit} className="flex flex-col gap-3">
                     <input
                         type="text"
-                        name="bandName"
-                        placeholder="Band Name"
-                        value={band.bandName}
+                        name="foodName"
+                        placeholder="Food Name"
+                        value={food.foodName}
                         onChange={handleChange}
                         className="border p-2 rounded"
                         required
@@ -88,7 +88,7 @@ const EditBand = () => {
                         type="text"
                         name="short_description"
                         placeholder="Short Description"
-                        value={band.short_description}
+                        value={food.short_description}
                         onChange={handleChange}
                         className="border p-2 rounded"
                         required
@@ -97,7 +97,7 @@ const EditBand = () => {
                     <textarea
                         name="description"
                         placeholder="Description"
-                        value={band.description}
+                        value={food.description}
                         onChange={handleChange}
                         className="border p-2 rounded h-40 resize-y"
                         required
@@ -105,9 +105,9 @@ const EditBand = () => {
                     />
                     <input
                         type="text"
-                        name="genre"
-                        placeholder="Genre"
-                        value={band.genre}
+                        name="cuisine"
+                        placeholder="Cuisine"
+                        value={food.cuisine}
                         onChange={handleChange}
                         className="border p-2 rounded"
                         required
@@ -117,7 +117,7 @@ const EditBand = () => {
                     {/* Submit button */}
                     <button
                         type="submit"
-                        className={`p-2 bg-green-500 text-white rounded hover:bg-green-600 ${
+                        className={`p-2 bg-yellow-500 text-white rounded hover:bg-yellow-600 ${
                             updating ? "opacity-50 cursor-not-allowed" : ""
                         }`}
                         disabled={updating}
@@ -130,4 +130,4 @@ const EditBand = () => {
     );
 }
 
-export default EditBand;
+export default EditFood;
