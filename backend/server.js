@@ -16,12 +16,12 @@ app.use(bodyParser.json());
 
 //* Define Route
 app.use("/api/bands", bandRoutes);
-app.use("/api/food", foodRoutes);
+app.use("/api/foods", foodRoutes);
 
 //* Start the Server
 connectDB()
     .then(() => {
-        const PORT = process.env.PORT || 3001;
+        const PORT = process.env.PORT || 3003;
         app.listen(PORT, () => {
             console.log(`The server is running on Port ${PORT}`);
         })
