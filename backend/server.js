@@ -14,7 +14,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 
-//* Define Route
+//* Define Routes
 app.use("/api/bands", bandRoutes);
 app.use("/api/foods", foodRoutes);
 
