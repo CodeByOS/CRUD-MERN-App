@@ -61,7 +61,7 @@ const FoodList = () => {
                 <div key={food._id} className="p-4 border rounded shadow">
                     <h2 className="text-xl font-bold">{food.foodName}</h2>
                     <p>{food.short_description}</p>
-                    <p className="italic">{food.genre}</p>
+                    <p className="italic">{food.cuisine}</p>
 
                     {/* Action Buttons */}
                     <div className="flex gap-2 mt-2">

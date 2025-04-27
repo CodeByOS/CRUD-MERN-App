@@ -9,7 +9,7 @@ const EditFood = () => {
         foodName: "",
         short_description: "",
         description: "",
-        genre: "",
+        cuisine: "",
     });
 
     // Local state for loading, error, and updating status
