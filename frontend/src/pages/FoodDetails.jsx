@@ -64,7 +64,7 @@ const FoodDetails = () => {
         <h1 className="text-5xl font-extrabold text-yellow-700 mb-6">{food.foodName}</h1>
         <p className="text-gray-700 text-lg mb-6 leading-relaxed">{food.description}</p>
         <p className="text-sm text-gray-500 italic mb-6">
-          <span className="text-yellow-700">Cuisine: {food.cuisine}</span>
+          <span className="text-yellow-700 text-lg">Cuisine: {food.cuisine}</span>
         </p>
 
         <div className="flex gap-4 mt-8">
