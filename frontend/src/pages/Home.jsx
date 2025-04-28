@@ -64,7 +64,6 @@ const Home = () => {
             </h1>
             <Link
               to={"/bands/add"}
-              aria-label="Add New Band"
               className="text-lg font-semibold text-white bg-green-700 hover:bg-green-800 px-4 py-2 rounded transition"
             >
               + Add New Band
