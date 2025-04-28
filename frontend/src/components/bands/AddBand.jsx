@@ -51,8 +51,8 @@ const AddBand = () => {
         <h1 className="text-2xl font-bold mb-4 text-center">Add New Band</h1>
 
         {/* Display error or success messages */}
-        {error && <p className="mb-4 text-red-600 font-bold">{error}</p>}
-        {success && <p className="mb-4 text-green-600 font-bold">{success}</p>}
+        {error && <p className="mb-4 text-red-600 font-bold text-center animate-pulse">{error}</p>}
+        {success && <p className="mb-4 text-green-600 font-bold text-center animate-pulse">{success}</p>}
 
         {/* Form for adding a new band */}
         <form onSubmit={handleSubmit} className="flex flex-col gap-3">
